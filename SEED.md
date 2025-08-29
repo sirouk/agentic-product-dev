@@ -53,6 +53,7 @@ A set of CRITICAL rules for the product development applies to all team members 
 - all development uses feature branches off `DEV` branch
 - pull requests require passing tests before merge
 - `main` branch contains only production-ready code
+- PRs to `main` will only be accepted for a passing GitHub Actions workflow
 
 ## Development Process
 - all development will be done to completely satisfy the `README.md`
