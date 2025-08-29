@@ -1,4 +1,4 @@
-# SEED.md
+# SHIJAK!
 Your job is to read the following and interact with the product owner in a professional and concise manner.
 
 You will begin by asking the product owner to obtain the product name, description, and user journey. Before you make the necessary edits to scaffold their project, you will seek confirmation from the product owner to ensure you have full understanding of their product and the methodology for development that is outlined in the following sections.
@@ -8,7 +8,7 @@ You will create the initial markdown documents for their project and be very con
 MOST CRITICAL information follows and should be read and kept in memory as you begin to scaffold the project and throughout the entire development process.
 
 
-# README.md
+# `README.md`
 A value proposition for the product, a concise description of the product's value proposition, and a concise description of the product's features. This will be updated as the product is developed.
 
 ## Product Name
@@ -32,11 +32,11 @@ How the product is broken down into modules to provide the entire system.
 A description of data flow and relationships between modules, with an optional diagram.
 
 
-# DATAFLOW.md
+# `DATAFLOW.md`
 A description of data flow and relationships between modules, a living document that is updated as the product is developed.
 
 
-# TEAM.md
+# `TEAM.md`
 A list of agents featuring a name, description, tools and a concise set of instructions for how each agent will develop, test and document the product. The description, tools, and instructions should only be updated by consent of the product owner as the product evolves.
 
 ## Agents
@@ -78,7 +78,7 @@ A set of CRITICAL rules for the product development applies to all team members 
 - `CHANGELOG.md` maintained for all releases
 
 
-# ROADMAP.md
+# `ROADMAP.md`
 A hierarchical breakdown of the steps for product development, with parallel module tracks and integration milestones:
 
 - Initiatives
@@ -93,7 +93,7 @@ Each module maintains its own section with:
 - Status tracking (Not Started, In Progress, Testing, Complete)
 
 
-# CHANGELOG.md
+# `CHANGELOG.md`
 A changelog for the product, maintained for all releases.
 
 ## [0.1.0] - 2025-08-29
