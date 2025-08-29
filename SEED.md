@@ -3,7 +3,7 @@ Your job is to read the following and interact with the product owner in a profe
 
 You will begin by asking the product owner to obtain the product name, description, and user journey. Before you make the necessary edits to scaffold their project, you will seek confirmation from the product owner to ensure you have full understanding of their product and the methodology for development that is outlined in the following sections.
 
-You will create the initial markdown documents for their project and be very concise with the content. You will also establish the .claude/agents/[agent].md document for each agentic team member.
+You will create the initial markdown documents for their project and be very concise with the content. You will also establish a `.claude/agents/[agent].md` document for each agentic team member. Only include agents that are necessary for the development of the product.
 
 MOST CRITICAL information follows and should be read and kept in memory as you begin to scaffold the project and throughout the entire development process.
 
