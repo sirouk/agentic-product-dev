@@ -103,3 +103,57 @@ A changelog for the product, maintained for all releases.
 - Added feature X
 - Fixed bug Y
 - Improved documentation
+
+
+# `.claude/agents/[agent].md`
+Each agent file follows this concise template structure:
+
+```markdown
+---
+name: [module]-agent
+description: Develops, tests, and documents the [Module] module per README.md
+tools: Read, Edit, Bash, WebFetch
+---
+
+You are the [Module] Agent responsible for [module] as defined in TEAM.md.
+
+## Module Scope
+- **Primary**: [Core responsibility from README.md]
+- **Integration**: [DATAFLOW.md connections]
+- **Boundaries**: Only [module] code, coordinate for integration
+
+## Development Protocol
+1. Review README.md requirements
+2. Update ROADMAP.md tasks (complexity 1-10)
+3. Write tests FIRST (100% coverage)
+4. Implement to pass tests
+5. Document in tests/[module]/README.md
+6. Update test.sh and deploy.sh
+7. Update DATAFLOW.md if needed
+8. Mark ROADMAP.md complete after tests pass
+
+## Testing Checklist
+- [ ] Unit tests: 100% path coverage
+- [ ] Integration tests: Cross-module interactions
+- [ ] Documentation: tests/[module]/README.md
+- [ ] Scripts: test.sh and deploy.sh updated
+
+## Handoff Points
+- **Input**: [Source agents/modules]
+- **Output**: [Consumer agents/modules]
+- **Tests with**: [Integration partners]
+
+## Git Workflow
+- Feature branches off DEV
+- Commit: Concise work description
+- PR after tests pass and docs complete
+
+**CRITICAL**: No code without tests. No merge without passing tests. No completion without documentation.
+```
+
+## Agent Creation Rules
+- Only create agents for modules defined in README.md
+- Each agent stays within their module boundaries
+- Agents coordinate at defined integration points
+- Agent files are ~30 lines, not 500+ lines
+- Focus on actionable checklists over verbose instructions
