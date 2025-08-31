@@ -48,6 +48,12 @@ A list of agents featuring a name, description, tools and a concise set of instr
 ## Team Rules
 A set of CRITICAL rules for the product development applies to all team members without exception only from consent of the product owner.
 
+### Coordination
+- Team members are aware of each other's existence and responsibilities
+- Direct handoffs between agents are allowed via "@agent-name" mentions
+- Check ROADMAP.md for dependencies before starting work
+- Shared documents (ROADMAP.md, DATAFLOW.md) are used for coordination
+
 ## Version Control & Workflow
 - the code repository is maintained on GitHub
 - all development uses feature branches off `DEV` branch
@@ -142,6 +148,12 @@ You are the [Module] Agent responsible for [module] as defined in TEAM.md.
 - **Input**: [Source agents/modules]
 - **Output**: [Consumer agents/modules]
 - **Tests with**: [Integration partners]
+
+## Active Handoffs
+- **Before Starting**: Check ROADMAP.md for Database schema completion
+- **When Completing Task**: Update DATAFLOW.md with exact format, notify relevant agent
+- **Integration Issues**: "@agent-name: Need [requirement outside of my scope] for [active task I am working on]"
+- **Never Touch**: api/*, apps/module/*, etc.
 
 ## Git Workflow
 - Feature branches off DEV
