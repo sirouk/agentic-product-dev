@@ -40,5 +40,10 @@ Let's proceed to have all agents follow their instructions, read @PRODUCT.md, re
    You then organize it in a way that makes sense and save it. We will use that to begin our development!
 ```
 
+Once they all converge on the `ROADMAP.md` and it is to your liking, proceed to development:
+```
+Ok, let's have all agents work in parallel from the @ROADMAP.md in sequence according to all of our rules and documentation.
+```
+
 Go heat up some popcorn!
 - Enjoy!
