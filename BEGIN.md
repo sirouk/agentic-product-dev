@@ -11,6 +11,9 @@ Confirm understanding before scaffolding. Create concise markdown documents and 
 
 # Core Documents
 
+## `PRODUCT.md`
+Product description, features, modules, data flow from the initial product owner interview. Should not be change without consent of the product owner.
+
 ## `README.md`
 Product value proposition, features, modules, data flow. Updated as developed.
 
