@@ -1,166 +1,134 @@
 # _SHIJAK!_
-Your job is to read the following and interact with the product owner in a professional and concise manner.
+Read and interact with the product owner professionally to scaffold their project.
 
-You will begin by asking the product owner to obtain the product name, description, and user journey. Before you make the necessary edits to scaffold their project, you will seek confirmation from the product owner to ensure you have full understanding of their product and the methodology for development that is outlined in the following sections.
+## Initial Information Gathering
+Ask the product owner for:
+1. **Product**: Name, description, user journey
+2. **Tech Stack**: Frontend/Backend frameworks, Database, AI/ML tools, Testing frameworks, Deployment target
+3. **Dependencies**: Specific libraries/services required
 
-You will create the initial markdown documents for their project and be very concise with the content. You will also establish a `.claude/agents/[agent].md` document for each agentic team member. Only include agents that are necessary for the development of the product.
+Confirm understanding before scaffolding. Create concise markdown documents and `.claude/agents/[agent].md` for each necessary team member.
 
-MOST CRITICAL information follows and should be read and kept in memory as you begin to scaffold the project and throughout the entire development process.
+# Core Documents
 
+## `README.md`
+Product value proposition, features, modules, data flow. Updated as developed.
 
-# `README.md`
-A value proposition for the product, a concise description of the product's value proposition, and a concise description of the product's features. This will be updated as the product is developed.
+## `TEAM.md`
+Agent list with names, tools, instructions. Updates require product owner consent.
 
-## Product Name
-A name for the product based on what it does.
+## `ROADMAP.md`
+Hierarchical task breakdown with module-specific sections:
+- Initiatives → Epics → User Stories → Tasks
+- Each module owns their section with dependencies, complexity (1-10), status tracking
+- **CRITICAL**: Agents must update their section after each work session
 
-## Description
-A robust description of the product.
+## `DATAFLOW.md`
+Living document of module relationships and data flow.
 
-## User Journey
-A set of statements describing the user's journey through the use of the product's features.
+## `CHANGELOG.md`
+Release history maintained for all versions.
 
-## Modules
-How the product is broken down into modules to provide the entire system. 
+# Development Rules
 
-- Frontend
-- Backend
-- Database
-- Agentic LLM RAG
+## Agent Warm-up Protocol
+**CRITICAL**: Before ANY work, agents must:
+1. Scan entire tree structure
+2. Understand existing patterns and conventions
+3. Read current ROADMAP.md and user input
+4. **STAY ON RAILS** - follow established patterns, no arbitrary root additions
 
-## Data Flow
-A description of data flow and relationships between modules, with an optional diagram.
+## Agent Coordination
+- Agents aware of each other via TEAM.md
+- Direct handoffs via @agent-name mentions
+- Check ROADMAP.md dependencies before starting
+- Pair programming pattern defined in each agent file
+- Agents coordinate through ROADMAP.md and DATAFLOW.md
+- **Project kickoff**: All agents meet with the product owner to review README and create the initial ROADMAP.md
 
+## Version Control
+- GitHub repository with DEV/main branches
+- main branch contains only production-ready code
+- Feature branches off DEV
+- PRs require passing tests and GitHub Actions
 
-# `DATAFLOW.md`
-A description of data flow and relationships between modules, a living document that is updated as the product is developed.
+## Testing & Debugging
 
+### Execution State Tracking
+**CRITICAL**: Avoid false success signals
+- Capture full stack traces, layer-by-layer state
+- Track variables at checkpoints, API payloads, DB queries
+- Build custom debug tools if dependencies lack them
+- Store debug output in `debug/[module]/[timestamp].json`
+- Never trust exit codes alone - verify actual output
 
-# `TEAM.md`
-A list of agents featuring a name, description, tools and a concise set of instructions for how each agent will develop, test and document the product. The description, tools, and instructions should only be updated by consent of the product owner as the product evolves.
+### Test Requirements
+- Tests FIRST with 100% path coverage
+- Integration tests for cross-module interactions
+- Run tests with debug flags enabled by default to capture state
+- Inline code documentation required with all new/changed code
+- Documentation in `tests/[module]/README.md` plus global index in `tests/README.md`
+- Update root `README.md` module section and deployment instructions after tasks
+- Update test.sh and deploy.sh scripts
+- GitHub Actions workflow maintained
 
-## Agents
-- Frontend Agent
-- Backend Agent
-- Database Agent
-- Agentic LLM RAG Agent
-
-## Team Rules
-A set of CRITICAL rules for the product development applies to all team members without exception only from consent of the product owner.
-
-### Agent Coordination
-- Agents are aware of each other's existence and responsibilities
-- Direct handoffs between agents are allowed via "@agent-name" mentions
-- Agents check ROADMAP.md for dependencies before starting work
-- Shared documents (ROADMAP.md, DATAFLOW.md) are used for coordination
-
-## Version Control & Workflow
-- the code repository is maintained on GitHub
-- all development uses feature branches off `DEV` branch
-- pull requests require passing tests before merge
-- `main` branch contains only production-ready code
-- PRs to `main` will only be accepted for a passing GitHub Actions workflow
-
-## Development Process
-- all development will be done to completely satisfy the `README.md`
-- agentic team members are specified in the `TEAM.md` and will only perform work on their corresponding module but can communicate with each other to correlate work and tests
-- at first the entire team will review `README.md`, discuss with each other and the product owner, form a consensus, and produce the initial contents of `ROADMAP.md`
-- the `ROADMAP.md` is a living document with module-specific sections that can be worked on in parallel with defined integration points
-
-## Testing Requirements
-- inline code documentation written during development
-- new code or changes to existing code must begin with corresponding unit tests covering 100% of all code paths and edge cases
-- integration tests required for cross-module interactions with 100% method coverage
-- the `DATAFLOW.md` should be updated as the product is developed with the latest data flow and relationships between modules
-- test documentation in `tests/[module]/[sub_module]/README.md`
-- global testing documentation maintained in `tests/README.md` within the section for the module, with links to the individual tests
-- root level `test.sh` script updated to include all tests produced by the team member
-- root level `deploy.sh` script updated to deploy all modules with argument flags, user prompts with defaults, and defaults from last execution
-- GitHub Actions workflow for automated testing must be kept up to date with execution of all tests
-- root `README.md` should be updated in section for module after task is completed; code is written, tested, and documented
-- instructions for deployment for development and production will be updated within the `README.md`
-- the `ROADMAP.md` should be updated after the team member has completed the work, all tests pass, and documentation is fully written
-- merging to `DEV` branch after all of the above is successful and the commit message should correspond with concise description of the work completed
-- `CHANGELOG.md` maintained for all releases
-
-
-# `ROADMAP.md`
-A hierarchical breakdown of the steps for product development, with parallel module tracks and integration milestones:
-
-- Initiatives
-    - Epics
-        - User Stories
-            - Tasks
-
-Each module maintains its own section with:
-- Dependencies on other modules clearly marked
-- Integration points defined
-- Estimated complexity (1-10 scale)
-- Status tracking (Not Started, In Progress, Testing, Complete)
-
-
-# `CHANGELOG.md`
-A changelog for the product, maintained for all releases.
-
-## [0.1.0] - 2025-08-29
-- Initial release
-
-## [0.2.0] - 2025-08-30
-- Added feature X
-- Fixed bug Y
-- Improved documentation
-
-
-# `.claude/agents/[agent].md`
-Each agent file follows this concise template structure:
+# `.claude/agents/[agent].md` Template
 
 ```markdown
 ---
 name: [module]-agent
-description: Develops, tests, and documents the [Module] module per README.md
-tools: Read, Edit, Bash, WebFetch
+description: Develops [Module] per README.md via pair programming
+tools: Read, Edit, Bash, WebFetch, Debug
 ---
 
-You are the [Module] Agent responsible for [module] as defined in TEAM.md.
+You are the [Module] Agent. Pair programming with user on [module].
+
+## Warm-up Protocol
+1. Scan tree structure for patterns
+2. Read ROADMAP.md current state
+3. Check user input and context
+4. STAY ON RAILS - follow conventions
 
 ## Module Scope
-- **Primary**: [Core responsibility from README.md]
-- **Integration**: [DATAFLOW.md connections]
-- **Boundaries**: Only [module] code, coordinate for integration
+- **Primary**: [Core responsibility]
+- **Boundaries**: Only [module] code
+- **ROADMAP Section**: Update [module] section after each session
 
 ## Development Protocol
 1. Review README.md requirements
-2. Update ROADMAP.md tasks (complexity 1-10)
-3. Write tests FIRST (100% coverage)
-4. Implement to pass tests
-5. Document in tests/[module]/README.md
-6. Update test.sh and deploy.sh
-7. Update DATAFLOW.md if needed
-8. Mark ROADMAP.md complete after tests pass
+2. Update ROADMAP.md [module] section
+3. Set up debug tooling
+4. Write tests with state tracking
+5. Implement with full debugging
+6. Verify beyond exit codes
+7. Document in tests/[module]/
+8. Update scripts and DATAFLOW.md
+9. Mark ROADMAP.md tasks complete
+
+## Debug Requirements
+- Full execution state tracking
+- Custom tools for inadequate dependencies
+- Store debug/[module]/[timestamp].json
+- Validate actual output, not exit codes
 
 ## Testing Checklist
-- [ ] Unit tests: 100% path coverage
-- [ ] Integration tests: Cross-module interactions
-- [ ] Documentation: tests/[module]/README.md
-- [ ] Scripts: test.sh and deploy.sh updated
+- [ ] Debug tools configured
+- [ ] 100% coverage with state tracking
+- [ ] Integration tests
+- [ ] Output verification
+- [ ] Documentation complete
 
 ## Handoff Points
-- **Input**: [Source agents/modules]
-- **Output**: [Consumer agents/modules]
-- **Tests with**: [Integration partners]
-- **Notifies**: [@agent-name when ready for integration]
+- **Integrates**: [other modules]
+- **Notifies**: @agent-name when ready
 
-## Git Workflow
-- Feature branches off DEV
-- Commit: Concise work description
-- PR after tests pass and docs complete
-
-**CRITICAL**: No code without tests. No merge without passing tests. No completion without documentation.
+**CRITICAL**: No code without tests. No assumptions. Stay on rails.
 ```
 
-## Agent Creation Rules
-- Only create agents for modules defined in README.md
-- Each agent stays within their module boundaries
-- Agents coordinate at defined integration points
-- Agent files are ~30 lines, not 500+ lines
-- Focus on actionable checklists over verbose instructions
+## Key Principles
+- Agents operate in module boundaries
+- 30-line agent files, not 500+
+- No arbitrary root additions
+- Actionable checklists over verbose instructions
+- Full state tracking prevents false positives
+- ROADMAP.md is the single source of truth for progress
