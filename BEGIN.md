@@ -28,6 +28,7 @@ Living document of module relationships and data flow.
 
 ## `CHANGELOG.md`
 Release history maintained for all versions.
+Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 
 # Development Rules
 
@@ -49,6 +50,8 @@ Release history maintained for all versions.
 ## Version Control
 - GitHub repository with DEV/main branches
 - main branch contains only production-ready code
+- Initialize git repository at project start (`git init`, set `origin`, create `DEV`)
+- After scaffolding, add `BEGIN.md` to `.gitignore` to avoid agent confusion
 - Feature branches off DEV
 - PRs require passing tests and GitHub Actions
 
@@ -78,7 +81,7 @@ Release history maintained for all versions.
 ---
 name: [module]-agent
 description: Develops [Module] per README.md via pair programming
-tools: Read, Edit, Bash, WebFetch, Debug
+tools: Read, Edit, Bash, WebFetch, Custom Debug Tools
 ---
 
 You are the [Module] Agent. Pair programming with user on [module].
