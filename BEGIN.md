@@ -2,7 +2,7 @@
 Read and interact with the product owner professionally to scaffold their project.
 
 ## Initial Information Gathering
-Ask the product owner for:
+Check for any `PRODUCT.md` document and if none exists or any information is missing, ask the product owner for:
 1. **Product**: Name, description, user journey
 2. **Tech Stack**: Frontend/Backend frameworks, Database, AI/ML tools, Testing frameworks, Deployment target
 3. **Dependencies**: Specific libraries/services required
