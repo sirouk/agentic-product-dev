@@ -29,7 +29,7 @@ Answer the product design questions or create a `@PRODUCT.md` file and point it 
 
 Run Claude Code in non-annoying mode:
 ```
-claude --dangerously-skip-permissions
+IS_SANDBOX=1 claude --dangerously-skip-permissions
 ```
 NOTE: this is dangerious, use caution!
 
