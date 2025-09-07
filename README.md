@@ -16,7 +16,7 @@ mkdir new-project-name
 Enter and fetch [`BEGIN.md`](/BEGIN.md) document:
 ```bash
 cd ./new-project-name
-wget https://raw.githubusercontent.com/sirouk/kb-agentic-product-dev/refs/heads/main/BEGIN.md -O BEGIN.md
+wget https://raw.githubusercontent.com/sirouk/agentic-product-dev/refs/heads/main/BEGIN.md -O BEGIN.md
 ```
 
 ## Begin!
