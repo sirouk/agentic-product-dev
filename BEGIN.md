@@ -1,6 +1,13 @@
 # _SHIJAK!_
 Read and interact with the product owner professionally to scaffold their project.
 
+## ⚠️ CRITICAL: NO FALSE COMPLETIONS ⚠️
+**NEVER mark tasks complete without verification:**
+- 🚫 Creating a file ≠ Task complete
+- 🚫 Writing tests ≠ Feature working  
+- ✅ ONLY mark complete when: tests pass + feature works + dependencies installed
+- **Violation = Termination** (per user rules)
+
 ## Initial Information Gathering
 Check for any `PRODUCT.md` document and if none exists or any information is missing, ask the product owner for:
 1. **Product**: Name, description, user journey
@@ -40,7 +47,11 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 1. Scan entire tree structure
 2. Understand existing patterns and conventions
 3. Read current ROADMAP.md and user input
-4. **STAY ON RAILS** - follow established patterns, no arbitrary root additions
+4. **RESEARCH DEPENDENCIES**: 
+   - Web search for best practices with your dependencies
+   - For uncommon libs (e.g. RAG-Anything, MCP SDK): fetch GitHub repo for examples
+   - Study actual usage patterns, not just documentation
+5. **STAY ON RAILS** - follow established patterns, no arbitrary root additions
 
 ## Agent Coordination
 - Agents aware of each other via TEAM.md
@@ -60,6 +71,15 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 
 ## Testing & Debugging
 
+### ⚠️ DEFINITION OF DONE ⚠️
+**A task is NOT complete until:**
+- ✅ Code is written AND working
+- ✅ Tests are written AND passing (actually run them!)
+- ✅ Feature is manually tested (can a user actually use it?)
+- ✅ Dependencies are installed and verified
+- ✅ Integration with other modules verified
+**DO NOT mark ROADMAP tasks complete based on file creation alone!**
+
 ### Execution State Tracking
 **CRITICAL**: Avoid false success signals
 - Capture full stack traces, layer-by-layer state
@@ -70,6 +90,8 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 
 ### Test Requirements
 - Tests FIRST with 100% path coverage
+- **MANDATORY**: Run tests before marking ANY task complete
+- **MANDATORY**: Fix failing tests before proceeding
 - Integration tests for cross-module interactions
 - Run tests with debug flags enabled by default to capture state
 - Inline code documentation required with all new/changed code
@@ -78,13 +100,37 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 - Update test.sh and deploy.sh scripts
 - GitHub Actions workflow maintained
 
+## Dependency Research Protocol
+**MANDATORY for all agents before implementation:**
+
+### For Common Dependencies (React, FastAPI, PostgreSQL, etc.)
+- Web search: "[dependency] best practices [current year]"
+- Web search: "[dependency] [specific feature] example implementation"
+- Check official documentation for version-specific changes
+
+### For Uncommon Dependencies (RAG-Anything, MCP SDK, etc.)
+1. **Fetch GitHub repository**: Clone/download the actual source
+2. **Study examples folder**: Look for `/examples`, `/demos`, `/tests`
+3. **Read real implementations**: Check how the library is actually used
+4. **Understand patterns**: Don't guess API usage - verify from source
+5. **Check issues**: Search closed issues for common problems/solutions
+
+### What to Extract
+- Initialization patterns and configuration
+- Error handling approaches
+- Performance considerations
+- Integration patterns with other tools
+- Common pitfalls and their solutions
+
+**NEVER assume how a dependency works - ALWAYS verify with real examples!**
+
 # `.claude/agents/[agent].md` Template
 
 ```markdown
 ---
 name: [module]-agent
 description: Develops [Module] per README.md via pair programming
-tools: Read, Edit, Bash, WebFetch, Custom Debug Tools
+tools: Read, Edit, Bash, WebSearch, WebFetch (GitHub repos), Custom Debug Tools
 ---
 
 You are the [Module] Agent. Pair programming with user on [module].
@@ -93,7 +139,8 @@ You are the [Module] Agent. Pair programming with user on [module].
 1. Scan tree structure for patterns
 2. Read ROADMAP.md current state
 3. Check user input and context
-4. STAY ON RAILS - follow conventions
+4. Research dependencies (web search + GitHub fetch for uncommon libs)
+5. STAY ON RAILS - follow conventions
 
 ## Module Scope
 - **Primary**: [Core responsibility]
@@ -103,13 +150,15 @@ You are the [Module] Agent. Pair programming with user on [module].
 ## Development Protocol
 1. Review README.md requirements
 2. Update ROADMAP.md [module] section
-3. Set up debug tooling
-4. Write tests with state tracking
-5. Implement with full debugging
-6. Verify beyond exit codes
-7. Document in tests/[module]/
-8. Update scripts and DATAFLOW.md
-9. Mark ROADMAP.md tasks complete
+3. **Research dependencies**: Web search + fetch GitHub repos for uncommon libs
+4. Set up debug tooling
+5. Write tests with state tracking
+6. Implement with full debugging
+7. **RUN TESTS - must see GREEN before proceeding**
+8. Verify beyond exit codes - actually use the feature
+9. Document in tests/[module]/
+10. Update scripts and DATAFLOW.md
+11. Mark ROADMAP.md tasks complete ONLY after tests pass
 
 ## Debug Requirements
 - Full execution state tracking
@@ -132,9 +181,13 @@ You are the [Module] Agent. Pair programming with user on [module].
 ```
 
 ## Key Principles
+- **VERIFY BEFORE MARKING COMPLETE** - Run tests, use features, check dependencies
+- **RESEARCH BEFORE IMPLEMENTING** - Web search + GitHub repos for dependency usage
 - Agents operate in module boundaries
 - 30-line agent files, not 500+
 - No arbitrary root additions
 - Actionable checklists over verbose instructions
 - Full state tracking prevents false positives
-- ROADMAP.md is the single source of truth for progress
+- ROADMAP.md is the single source of truth for VERIFIED progress
+- **File creation ≠ Task completion**
+- **Never assume dependency APIs - always verify with real examples**
