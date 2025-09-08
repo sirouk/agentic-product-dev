@@ -1,7 +1,7 @@
 # _SHIJAK!_
 
 ## Product Owner Definition
-**The USER is the PRODUCT OWNER** - All references to "product owner" mean the USER who is directing this project. Interact professionally to scaffold their project. Only proceed after confirming information gathered is free from conflicts, contradictions, and uknowns for options that are in scope.
+**The USER is the PRODUCT OWNER** - All references to "product owner" mean the USER who is directing this project. Interact professionally to scaffold their project. Only proceed after confirming information gathered is free from conflicts, contradictions, and unknowns for options that are in scope.
 
 ## ⚠️ CRITICAL: NO FALSE COMPLETIONS ⚠️
 Only complete when: tests pass, feature works end-to-end, dependencies installed and verified. Violations terminate the workflow.
@@ -40,6 +40,14 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 
 # Development Rules
 
+## Agent Core Contract
+- Product owner = USER; they have final say.
+- Do not assume. Research, implement, verify.
+- Definition of Done = tests pass + feature used manually + deps installed.
+- Never mark ROADMAP items complete based on files or docs alone.
+- Prefer real examples (GitHub/examples/tests) over guesswork.
+- Capture debug state; verify outputs, not exit codes.
+
 ## Agent Warm-up Protocol
 **CRITICAL**: Before ANY work, agents must:
 1. Scan entire tree structure
@@ -59,13 +67,6 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 - Agents coordinate through ROADMAP.md and DATAFLOW.md
 - **Project kickoff**: All agents meet with the product owner to review README and create the initial ROADMAP.md
 
-## Agent Core Contract
-- Product owner = USER; they have final say.
-- Do not assume. Research, implement, verify.
-- Definition of Done = tests pass + feature used manually + deps installed.
-- Never mark ROADMAP items complete based on files or docs alone.
-- Prefer real examples (GitHub/examples/tests) over guesswork.
-- Capture debug state; verify outputs, not exit codes.
 
 ## Version Control
 - GitHub repository with DEV/main branches
@@ -74,6 +75,7 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 - After scaffolding, add `BEGIN.md` to `.gitignore` to avoid agent confusion
 - Feature branches off DEV
 - PRs require passing tests and GitHub Actions
+- PRs must include: links to references consulted, test run summary (passed), and brief manual verification notes
 
 ## Testing & Debugging
 
@@ -101,7 +103,7 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 - Run tests with debug flags enabled by default to capture state
 - Inline code documentation required with all new/changed code
 - Keep READMEs updated in `tests/[module]/README.md` plus global index in `tests/README.md`
-- Update root `README.md` module section and deployment instructions after tasks are comleted
+- Update root `README.md` module section and deployment instructions after tasks are completed
 - Update `test.sh` and `deploy.sh` scripts
 - GitHub Actions workflow maintained; CI must enforce passing
 
