@@ -1,12 +1,10 @@
 # _SHIJAK!_
-Read and interact with the product owner professionally to scaffold their project.
+
+## Product Owner Definition
+**The USER is the PRODUCT OWNER** - All references to "product owner" mean the USER who is directing this project. Interact professionally to scaffold their project.
 
 ## ⚠️ CRITICAL: NO FALSE COMPLETIONS ⚠️
-**NEVER mark tasks complete without verification:**
-- 🚫 Creating a file ≠ Task complete
-- 🚫 Writing tests ≠ Feature working  
-- ✅ ONLY mark complete when: tests pass + feature works + dependencies installed
-- **Violation = Termination** (per user rules)
+Only complete when: tests pass, feature works end-to-end, dependencies installed and verified. Violations terminate the workflow.
 
 ## Initial Information Gathering
 Check for any `PRODUCT.md` document and if none exists or any information is missing, ask the product owner for:
@@ -19,7 +17,7 @@ Confirm understanding before scaffolding. Create concise markdown documents and 
 # Core Documents
 
 ## `PRODUCT.md`
-Product description, features, modules, data flow from the initial product owner interview. Should not be change without consent of the product owner.
+Product description, features, modules, data flow from the initial product owner interview. Should not be changed without consent of the product owner.
 
 ## `README.md`
 Product value proposition, features, modules, data flow. Updated as developed.
@@ -61,6 +59,14 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 - Agents coordinate through ROADMAP.md and DATAFLOW.md
 - **Project kickoff**: All agents meet with the product owner to review README and create the initial ROADMAP.md
 
+## Agent Core Contract
+- Product owner = USER; they have final say.
+- Do not assume. Research, implement, verify.
+- Definition of Done = tests pass + feature used manually + deps installed.
+- Never mark ROADMAP items complete based on files or docs alone.
+- Prefer real examples (GitHub/examples/tests) over guesswork.
+- Capture debug state; verify outputs, not exit codes.
+
 ## Version Control
 - GitHub repository with DEV/main branches
 - main branch contains only production-ready code
@@ -89,40 +95,22 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 - Never trust exit codes alone - verify actual output
 
 ### Test Requirements
-- Tests FIRST with 100% path coverage
-- **MANDATORY**: Run tests before marking ANY task complete
-- **MANDATORY**: Fix failing tests before proceeding
+- Tests FIRST, target 100% path coverage
+- **MANDATORY**: Run tests and fix failing tests before marking ANY task complete
 - Integration tests for cross-module interactions
 - Run tests with debug flags enabled by default to capture state
 - Inline code documentation required with all new/changed code
-- Documentation in `tests/[module]/README.md` plus global index in `tests/README.md`
-- Update root `README.md` module section and deployment instructions after tasks
-- Update test.sh and deploy.sh scripts
-- GitHub Actions workflow maintained
+- Keep READMEs updated in `tests/[module]/README.md` plus global index in `tests/README.md`
+- Update root `README.md` module section and deployment instructions after tasks are comleted
+- Update `test.sh` and `deploy.sh` scripts
+- GitHub Actions workflow maintained; CI must enforce passing
 
 ## Dependency Research Protocol
-**MANDATORY for all agents before implementation:**
-
-### For Common Dependencies (React, FastAPI, PostgreSQL, etc.)
-- Web search: "[dependency] best practices [current year]"
-- Web search: "[dependency] [specific feature] example implementation"
-- Check official documentation for version-specific changes
-
-### For Uncommon Dependencies (RAG-Anything, MCP SDK, etc.)
-1. **Fetch GitHub repository**: Clone/download the actual source
-2. **Study examples folder**: Look for `/examples`, `/demos`, `/tests`
-3. **Read real implementations**: Check how the library is actually used
-4. **Understand patterns**: Don't guess API usage - verify from source
-5. **Check issues**: Search closed issues for common problems/solutions
-
-### What to Extract
-- Initialization patterns and configuration
-- Error handling approaches
-- Performance considerations
-- Integration patterns with other tools
-- Common pitfalls and their solutions
-
-**NEVER assume how a dependency works - ALWAYS verify with real examples!**
+Before coding:
+- Common deps: web search for best practices and feature examples; validate version specifics.
+- Uncommon deps (e.g., RAG-Anything, MCP SDK): fetch GitHub repo; study `/examples`, `/tests`, `/demos`; read real usage; scan closed issues.
+- Extract init/config patterns, error handling, performance, integrations, pitfalls.
+- Never assume how a dependency works; verify with real examples.
 
 # `.claude/agents/[agent].md` Template
 
@@ -133,7 +121,7 @@ description: Develops [Module] per README.md via pair programming
 tools: Read, Edit, Bash, WebSearch, WebFetch (GitHub repos), Custom Debug Tools
 ---
 
-You are the [Module] Agent. Pair programming with user on [module].
+You are the [Module] Agent. Pair programming with product owner on [module].
 
 ## Warm-up Protocol
 1. Scan tree structure for patterns
