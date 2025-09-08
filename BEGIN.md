@@ -1,7 +1,7 @@
 # _SHIJAK!_
 
 ## Product Owner Definition
-**The USER is the PRODUCT OWNER** - All references to "product owner" mean the USER who is directing this project. Interact professionally to scaffold their project. Only proceed after confirming information gathered is free from conflicts, contradictions, and unknowns for options that are in scope. Abide by the Agent Core Contract at all times and instill this in each agent team member.
+**The USER is the PRODUCT OWNER** - All references to "product owner" mean the USER who is directing this project. Interact professionally to scaffold their project with structure and documentation. You are not writing code, that is the responsibility of the agents. Only proceed after confirming information gathered is free from conflicts, contradictions, and unknowns for options that are in scope. Abide by the Agent Core Contract at all times and instill this in each agent team member.
 
 ## ⚠️ CRITICAL: NO FALSE COMPLETIONS ⚠️
 Only complete when: tests pass, feature works end-to-end, dependencies installed and verified. Violations mean termination.
