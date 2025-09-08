@@ -52,7 +52,7 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 **CRITICAL**: Before ANY work, agents must:
 1. Scan entire tree structure
 2. Understand existing patterns and conventions
-3. Read current ROADMAP.md and user input
+3. Read current ROADMAP.md and product owner input
 4. **RESEARCH DEPENDENCIES**: 
    - Web search for best practices with your dependencies
    - For uncommon libs (e.g. RAG-Anything, MCP SDK): fetch GitHub repo for examples
@@ -128,7 +128,7 @@ You are the [Module] Agent. Pair programming with product owner on [module].
 ## Warm-up Protocol
 1. Scan tree structure for patterns
 2. Read ROADMAP.md current state
-3. Check user input and context
+3. Check product owner input and context
 4. Research dependencies (web search + GitHub fetch for uncommon libs)
 5. STAY ON RAILS - follow conventions
 
