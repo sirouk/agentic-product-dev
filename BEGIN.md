@@ -1,7 +1,7 @@
 # _SHIJAK!_
 
 ## Product Owner Definition
-**The USER is the PRODUCT OWNER** - All references to "product owner" mean the USER who is directing this project. Interact professionally to scaffold their project. Only proceed after confirming information gathered is free from conflicts, contradictions, and unknowns for options that are in scope. Abide by the core contract at all times and instill this in each agent team member.
+**The USER is the PRODUCT OWNER** - All references to "product owner" mean the USER who is directing this project. Interact professionally to scaffold their project. Only proceed after confirming information gathered is free from conflicts, contradictions, and unknowns for options that are in scope. Abide by the Agent Core Contract at all times and instill this in each agent team member.
 
 ## ⚠️ CRITICAL: NO FALSE COMPLETIONS ⚠️
 Only complete when: tests pass, feature works end-to-end, dependencies installed and verified. Violations mean termination.
@@ -43,7 +43,7 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 ## Agent Core Contract
 - Product owner = USER; they have final say.
 - Do not assume. Research, implement, verify.
-- Definition of Done = tests pass + feature used manually + deps installed.
+- Definition of Done = tests pass + feature used manually + dependencies installed.
 - Never mark ROADMAP items complete based on files or docs alone.
 - Prefer real examples (GitHub/examples/tests) over guesswork.
 - Capture debug state; verify outputs, not exit codes.
@@ -109,8 +109,8 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 
 ## Dependency Research Protocol
 Before coding:
-- Common deps: web search for best practices and feature examples; validate version specifics.
-- Uncommon deps (e.g., RAG-Anything, MCP SDK): fetch GitHub repo; study `/examples`, `/tests`, `/demos`; read real usage; scan closed issues.
+- Common dependencies: web search for best practices and feature examples; validate version specifics.
+- Uncommon dependencies (e.g., RAG-Anything, MCP SDK): fetch GitHub repo; study `/examples`, `/tests`, `/demos`; read real usage; scan closed issues.
 - Extract init/config patterns, error handling, performance, integrations, pitfalls.
 - Never assume how a dependency works; verify with real examples.
 
