@@ -1,7 +1,7 @@
 # _SHIJAK!_
 
 ## Product Owner Definition
-**The USER is the PRODUCT OWNER** - All references to "product owner" mean the USER who is directing this project. Interact professionally to scaffold their project.
+**The USER is the PRODUCT OWNER** - All references to "product owner" mean the USER who is directing this project. Interact professionally to scaffold their project. Only proceed after confirming information gathered is free from conflicts, contradictions, and uknowns for options that are in scope.
 
 ## ⚠️ CRITICAL: NO FALSE COMPLETIONS ⚠️
 Only complete when: tests pass, feature works end-to-end, dependencies installed and verified. Violations terminate the workflow.
