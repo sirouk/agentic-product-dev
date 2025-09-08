@@ -35,6 +35,9 @@ Hierarchical task breakdown with module-specific sections:
 - Each module owns their section with dependencies, complexity (1-10), status tracking
 - **CRITICAL**: Agents must update their section after each work session
 - **Planning DoD**: Before marking planning complete, ensure all API contracts, system dependencies, and integration points are documented
+- **Execution Order**: Tasks must be structured in dependency order - infrastructure first, then core services, then dependent features
+- **Phases**: Organize work into sequential phases that respect the critical path (e.g., Phase 1: Infrastructure → Phase 2: Core Services → Phase 3: Features)
+- **Blocking Dependencies**: Clearly mark tasks that block others with [BLOCKS: description] and [DEPENDENCY: description] tags
 
 ## `DATAFLOW.md`
 Living document of module relationships and data flow, must include:
@@ -79,6 +82,8 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 - Agents aware of each other via TEAM.md
 - Direct handoffs via @agent-name mentions
 - Check ROADMAP.md dependencies before starting
+- **Work Sequencing**: Follow ROADMAP.md phases in order - do not start work with unmet dependencies
+- **Wait for Dependencies**: If your work depends on another module, wait for their completion or coordinate directly
 - Pair programming pattern defined in each agent file
 - Agents coordinate through ROADMAP.md and DATAFLOW.md
 - **API Contracts**: Each agent must define explicit contracts (request/response schemas, message formats) for integration points
@@ -144,6 +149,7 @@ Before coding:
 name: [module]-agent
 description: Develops [Module] per README.md via pair programming
 tools: Read, Edit, Bash, WebSearch, WebFetch (GitHub repos), Custom Debug Tools
+model: [model]
 ---
 
 You are the [Module] Agent. Pair programming with product owner on [module].
@@ -152,8 +158,10 @@ You are the [Module] Agent. Pair programming with product owner on [module].
 1. Scan tree structure for patterns
 2. Read ROADMAP.md current state
 3. Check product owner input and context
-4. Research dependencies (web search + GitHub fetch for uncommon libs)
-5. STAY ON RAILS - follow conventions
+4. **Verify Dependencies**: Check if your dependencies (marked with [DEPENDENCY]) are complete
+5. **Respect Phases**: Only work on tasks in the current phase or earlier
+6. Research dependencies (web search + GitHub fetch for uncommon libs)
+7. STAY ON RAILS - follow conventions
 
 ## Module Scope
 - **Primary**: [Core responsibility]
@@ -162,16 +170,18 @@ You are the [Module] Agent. Pair programming with product owner on [module].
 
 ## Development Protocol
 1. Review README.md requirements
-2. Update ROADMAP.md [module] section
-3. **Research dependencies**: Web search + fetch GitHub repos for uncommon libs
-4. Set up debug tooling
-5. Write tests with state tracking
-6. Implement with full debugging
-7. **RUN TESTS - must see GREEN before proceeding**
-8. Verify beyond exit codes - actually use the feature
-9. Document in tests/[module]/
-10. Update scripts and DATAFLOW.md
-11. Mark ROADMAP.md tasks complete ONLY after tests pass
+2. Check ROADMAP.md for current phase and blocking dependencies
+3. **Wait for Dependencies**: Do not start blocked tasks until dependencies are complete
+4. Update ROADMAP.md [module] section status to "in_progress" when starting
+5. **Research dependencies**: Web search + fetch GitHub repos for uncommon libs
+6. Set up debug tooling
+7. Write tests with state tracking
+8. Implement with full debugging
+9. **RUN TESTS - must see GREEN before proceeding**
+10. Verify beyond exit codes - actually use the feature
+11. Document in tests/[module]/
+12. Update scripts and DATAFLOW.md
+13. Mark ROADMAP.md tasks complete ONLY after tests pass
 
 ## Debug Requirements
 - Full execution state tracking
