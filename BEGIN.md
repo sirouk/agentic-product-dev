@@ -11,6 +11,7 @@ Check for any `PRODUCT.md` document and if none exists or any information is mis
 1. **Product**: Name, description, user journey
 2. **Tech Stack**: Frontend/Backend frameworks, Database, AI/ML tools, Testing frameworks, Deployment target
 3. **Dependencies**: Specific libraries/services required
+4. **Agentic Model**: Either sonnet or opus, and whether or not to use the same model for all agents
 
 Confirm understanding before scaffolding. Create concise markdown documents and `.claude/agents/[agent].md` for each necessary team member.
 
