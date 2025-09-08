@@ -11,7 +11,10 @@ Check for any `PRODUCT.md` document and if none exists or any information is mis
 1. **Product**: Name, description, user journey
 2. **Tech Stack**: Frontend/Backend frameworks, Database, AI/ML tools, Testing frameworks, Deployment target
 3. **Dependencies**: Specific libraries/services required
-4. **Agentic Model**: Either sonnet or opus, and whether or not to use the same model for all agents
+4. **Infrastructure**: All services/containers needed (including workers, queues, caches)
+5. **Integrations**: External services, APIs, webhooks, real-time features
+6. **UI Completeness**: All screens, settings, admin interfaces, token management
+7. **Agentic Model**: Which model to use and if the same model should be used for all agents. (suggest sonnet or opus)
 
 Confirm understanding before scaffolding. Create concise markdown documents and `.claude/agents/[agent].md` for each necessary team member.
 
@@ -31,9 +34,16 @@ Hierarchical task breakdown with module-specific sections:
 - Initiatives → Epics → User Stories → Tasks
 - Each module owns their section with dependencies, complexity (1-10), status tracking
 - **CRITICAL**: Agents must update their section after each work session
+- **Planning DoD**: Before marking planning complete, ensure all API contracts, system dependencies, and integration points are documented
 
 ## `DATAFLOW.md`
-Living document of module relationships and data flow.
+Living document of module relationships and data flow, must include:
+- All services/components and their dependencies
+- API contracts between modules (REST, WebSocket, GraphQL, etc.)
+- Background job/worker processes and queues
+- Real-time features and event flows
+- Storage volumes and persistence requirements
+- Infrastructure requirements (CPU, memory, GPU allocation)
 
 ## `CHANGELOG.md`
 Release history maintained for all versions.
@@ -58,7 +68,12 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
    - Web search for best practices with your dependencies
    - For uncommon libs (e.g. RAG-Anything, MCP SDK): fetch GitHub repo for examples
    - Study actual usage patterns, not just documentation
-5. **STAY ON RAILS** - follow established patterns, no arbitrary root additions
+5. **DEFINE INFRASTRUCTURE**:
+   - List all containers/services your module needs
+   - Specify resource requirements (CPU, memory, GPU if applicable)
+   - Document system dependencies (OS packages, binaries, tools)
+   - Define storage volumes and persistence needs
+6. **STAY ON RAILS** - follow established patterns, no arbitrary root additions
 
 ## Agent Coordination
 - Agents aware of each other via TEAM.md
@@ -66,6 +81,8 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 - Check ROADMAP.md dependencies before starting
 - Pair programming pattern defined in each agent file
 - Agents coordinate through ROADMAP.md and DATAFLOW.md
+- **API Contracts**: Each agent must define explicit contracts (request/response schemas, message formats) for integration points
+- **Version Alignment**: Ensure language/runtime compatibility across all services
 - **Project kickoff**: All agents meet with the product owner to review README and create the initial ROADMAP.md
 
 
@@ -107,11 +124,16 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 - Update root `README.md` module section and deployment instructions after tasks are completed
 - Update `test.sh` and `deploy.sh` scripts
 - GitHub Actions workflow maintained; CI must enforce passing
+- **Test Data Contracts**: Each agent provides fixtures and mocks in `tests/fixtures/[module]/`
+- **Mock Services**: Define mock responses for external dependencies
 
 ## Dependency Research Protocol
 Before coding:
 - Common dependencies: web search for best practices and feature examples; validate version specifics.
 - Uncommon dependencies (e.g., RAG-Anything, MCP SDK): fetch GitHub repo; study `/examples`, `/tests`, `/demos`; read real usage; scan closed issues.
+- System dependencies: List all OS packages, binaries, external tools (e.g., FFmpeg, LibreOffice)
+- Hardware requirements: GPU memory, disk space, network bandwidth if significant
+- Version compatibility: Ensure all services use compatible language/framework versions
 - Extract init/config patterns, error handling, performance, integrations, pitfalls.
 - Never assume how a dependency works; verify with real examples.
 
@@ -166,6 +188,9 @@ You are the [Module] Agent. Pair programming with product owner on [module].
 
 ## Handoff Points
 - **Integrates**: [other modules]
+- **API Contracts**: Define all endpoints, message formats, schemas
+- **Dependencies From**: What this module needs from others
+- **Provides To**: What this module provides to others
 - **Notifies**: @agent-name when ready
 
 **CRITICAL**: No code without tests. No assumptions. Stay on rails.
