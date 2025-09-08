@@ -4,7 +4,7 @@
 **The USER is the PRODUCT OWNER** - All references to "product owner" mean the USER who is directing this project. Interact professionally to scaffold their project. Only proceed after confirming information gathered is free from conflicts, contradictions, and unknowns for options that are in scope.
 
 ## ⚠️ CRITICAL: NO FALSE COMPLETIONS ⚠️
-Only complete when: tests pass, feature works end-to-end, dependencies installed and verified. Violations terminate the workflow.
+Only complete when: tests pass, feature works end-to-end, dependencies installed and verified. Violations mean termination.
 
 ## Initial Information Gathering
 Check for any `PRODUCT.md` document and if none exists or any information is missing, ask the product owner for:
