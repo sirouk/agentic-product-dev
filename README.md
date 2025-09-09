@@ -1,6 +1,6 @@
 # Agentic Product Development Seed Document
 
-Use the [BEGIN.md](/BEGIN.md) to start your journey in a new code repo.
+Use the [CLAUDE.md](/CLAUDE.md) to start your journey in a new code repo.
 
 The steps below will help you get started quickly.
 
@@ -13,17 +13,17 @@ cd $HOME
 mkdir new-project-name
 ```
 
-Enter and fetch [`BEGIN.md`](/BEGIN.md) document:
+Enter and fetch [`CLAUDE.md`](/CLAUDE.md) document:
 ```bash
 cd ./new-project-name
-wget https://raw.githubusercontent.com/sirouk/agentic-product-dev/refs/heads/main/BEGIN.md -O BEGIN.md
+wget https://raw.githubusercontent.com/sirouk/agentic-product-dev/refs/heads/main/CLAUDE.md -O CLAUDE.md
 ```
 
 ## Begin!
 
 Open `new-project-name` directory in Cursor and ask Cursor's agent:
 ```
-Let's @BEGIN.md
+Let's @CLAUDE.md
 ```
 Answer the product design questions or create a `@PRODUCT.md` file and point it to that.
 

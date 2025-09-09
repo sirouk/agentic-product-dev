@@ -84,6 +84,7 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 - Check ROADMAP.md dependencies before starting
 - **Work Sequencing**: Follow ROADMAP.md phases in order - do not start work with unmet dependencies
 - **Wait for Dependencies**: If your work depends on another module, wait for their completion or coordinate directly
+- **Phase Gate**: Base agent must block phase promotion until all tasks in the current phase meet the Definition of Done, including 100% path coverage and manual output verification; do not start the next phase until evidence (green tests + manual verification notes) is recorded
 - Pair programming pattern defined in each agent file
 - Agents coordinate through ROADMAP.md and DATAFLOW.md
 - **API Contracts**: Each agent must define explicit contracts (request/response schemas, message formats) for integration points
@@ -95,7 +96,6 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 - GitHub repository with DEV/main branches
 - main branch contains only production-ready code
 - Initialize git repository at project start (`git init`, set `origin`, create `DEV`)
-- After scaffolding, add `BEGIN.md` to `.gitignore` to avoid agent confusion
 - Feature branches off DEV
 - PRs require passing tests and GitHub Actions
 - PRs must include: links to references consulted, test run summary (passed), and brief manual verification notes
@@ -120,7 +120,7 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 - Never trust exit codes alone - verify actual output
 
 ### Test Requirements
-- Tests FIRST, target 100% path coverage
+- Tests FIRST, require 100% path coverage
 - **MANDATORY**: Run tests and fix failing tests before marking ANY task complete
 - Integration tests for cross-module interactions
 - Run tests with debug flags enabled by default to capture state
