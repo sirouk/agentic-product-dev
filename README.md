@@ -59,12 +59,11 @@ Let's do a once-over by carefully reviewing @DATAFLOW.md and @ROADMAP.md to make
 
 Once you review the documents, and it is to your liking, proceed to development:
 ```
-Ok, let's proceed to have all agents work in parallel,
-  staying within their scope and stopping where blocked,
-  each carefully following their role and rules to complete
-  in sequence the tasks in @ROADMAP.md, stopping where blocked,
-  they should only complete the work assigne to them and not,
-  do any tasks that are defined within the scope of any other agent.
+Ok, let's proceed to have all agents carefully work in parallel,
+  staying within their scope, working in sequence, and stopping where blocked.
+  Each agent must carefully follow their role and template rules to complete
+  the tasks in @ROADMAP.md, staying in their scope and stopping where blocked.
+  The agents should not ever complete work assigned to another agent.
 ```
 
 Go heat up some popcorn!
