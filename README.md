@@ -1,5 +1,7 @@
 # Agentic Product Development Seed Document
 
+The goal of this project is to provide a quick and easy way to start a new project with a team of agents. We decided to use Claude as our agentic framework.
+
 Use the [CLAUDE.md](/CLAUDE.md) to start your journey in a new code repo.
 
 The steps below will help you get started quickly.
