@@ -33,16 +33,38 @@ IS_SANDBOX=1 claude --dangerously-skip-permissions
 ```
 NOTE: this is dangerious, use caution!
 
-Configure Claude Code `/config` and tell the base agent:
+Configure Claude Code:
+```/config```
+
+Then have the sub-agents collab on `DATAFLOW.md`:
 ```
-Let's proceed to have all agents follow their instructions, read @PRODUCT.md, realize what role they have
-  based on their template, but before they begin just to converge on a @ROADMAP.md and edit it for their parts.
-   You then organize it in a way that makes sense and save it. We will use that to begin our development!
+Activate all agents in parallel to acknowledge their roles and template rules,
+  thoroughly review @PRODUCT.md, and collaboratively update @DATAFLOW.md by identifying
+  each other's needs and ensuring each agent's section covers all intra-agent and inter-agent data
+  flows and all service interactions.
 ```
 
-Once they all converge on the `ROADMAP.md` and it is to your liking, proceed to development:
+Once they converge on a `DATAFLOW.md` then have the base-agent write the `ROADMAP.md`:
 ```
-Ok, let's have all agents work in parallel from the @ROADMAP.md in sequence according to all of our rules and documentation.
+Now read all sub-agent's @.claude/agents/*.md template and then carefully study @DATAFLOW.md
+  so you can create a carefully sequenced and segemented @ROADMAP.md taking into consideration the full @PRODUCT.md
+```
+
+Review the `ROADMAP.md` for `DATAFLOW.md` compatibility:
+```
+Let's do a once-over by carefully reviewing @DATAFLOW.md and @ROADMAP.md to make sure
+  all sections and items are in their section and sequenced in a way that makes sense,
+  as this will determine the ability for our @TEAM.md to succeed in developing the @PRODUCT.md
+```
+
+Once you review the documents, and it is to your liking, proceed to development:
+```
+Ok, let's proceed to have all agents work in parallel,
+  staying within their scope and stopping where blocked,
+  each carefully following their role and rules to complete
+  in sequence the tasks in @ROADMAP.md, stopping where blocked,
+  they should only complete the work assigne to them and not,
+  do any tasks that are defined within the scope of any other agent.
 ```
 
 Go heat up some popcorn!
