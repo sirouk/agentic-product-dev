@@ -23,7 +23,7 @@ wget https://raw.githubusercontent.com/sirouk/agentic-product-dev/refs/heads/mai
 
 Open `new-project-name` directory in Cursor and ask Cursor's agent:
 ```
-Let's @CLAUDE.md
+Hey @CLAUDE.md, let's begin!
 ```
 Answer the product design questions or create a `@PRODUCT.md` file and point it to that.
 
