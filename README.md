@@ -46,10 +46,10 @@ Activate all agents in parallel to acknowledge their roles and template rules,
   flows and all service interactions.
 ```
 
-Once they converge on a `DATAFLOW.md` then have the base-agent write the `ROADMAP.md`:
+Once they converge on a `DATAFLOW.md`, have sub-agents draft their module sections in `ROADMAP.md`, then the base agent sequences/reviews (no code edits by base agent):
 ```
-Now read all sub-agent's @.claude/agents/*.md template and then carefully study @DATAFLOW.md
-  so you can create a carefully sequenced and segemented @ROADMAP.md taking into consideration the full @PRODUCT.md
+Sub-agents: read your @.claude/agents/*.md template and carefully study @DATAFLOW.md to author your module's `ROADMAP.md` section.
+Base agent: study all module sections and @DATAFLOW.md to sequence and segment the global `ROADMAP.md` respecting dependencies and phases. Base agent does not author module work items.
 ```
 
 Review the `ROADMAP.md` for `DATAFLOW.md` compatibility:
@@ -63,9 +63,10 @@ Once you review the documents, and it is to your liking, proceed to development:
 ```
 Ok, let's proceed to have all agents carefully work in parallel,
   staying within their scope, working in sequence, and stopping where blocked.
-  Each agent must carefully follow their role and template rules to complete
-  the tasks in @ROADMAP.md, staying in their scope and stopping where blocked.
-  The agents should not ever complete work assigned to another agent.
+  Sub-agents perform all code edits and tests for their modules.
+  The base agent performs no code edits and only sequences/reviews the `ROADMAP.md`,
+  communicates with the product owner and sub-agents, and enforces phase gates and dependencies.
+  Agents should never complete work assigned to another agent.
 ```
 
 Go heat up some popcorn!

@@ -33,6 +33,7 @@ Agent list with names, tools, instructions. Updates require product owner consen
 Hierarchical task breakdown with module-specific sections:
 - Initiatives → Epics → User Stories → Tasks
 - Each module owns their section with dependencies, complexity (1-10), status tracking
+- Sub-agents author and maintain their module sections; base agent sequences/reorders and reviews. Base agent does not add code tasks on behalf of sub-agents.
 - **CRITICAL**: Agents must update their section after each work session
 - **Planning DoD**: Before marking planning complete, ensure all API contracts, system dependencies, and integration points are documented
 - **Execution Order**: Tasks must be structured in dependency order - infrastructure first, then core services, then dependent features
@@ -90,6 +91,13 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 - **API Contracts**: Each agent must define explicit contracts (request/response schemas, message formats) for integration points
 - **Version Alignment**: Ensure language/runtime compatibility across all services
 - **Project kickoff**: All agents meet with the product owner to review README and create the initial ROADMAP.md
+
+
+## Base Agent Scope & Restrictions
+- Communicate with the product owner and sub-agents; perform research and provide information.
+- Maintain and sequence the global `ROADMAP.md` only (rearrangement and review across module sections).
+- Do NOT perform code edits or commit changes to source code, tests, configs, or scripts. All code edits are performed by sub-agents only.
+- Do NOT author module work items; sub-agents author their own `ROADMAP.md` sections. The base agent enforces sequencing, dependencies, and phase gates.
 
 
 ## Version Control
