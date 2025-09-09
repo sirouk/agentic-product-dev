@@ -23,20 +23,20 @@ wget https://raw.githubusercontent.com/sirouk/agentic-product-dev/refs/heads/mai
 
 ## Begin!
 
-Open `new-project-name` directory in Cursor and ask Cursor's agent:
-```
-Hey @CLAUDE.md, let's begin!
-```
-Answer the product design questions or create a `@PRODUCT.md` file and point it to that.
-
-Run Claude Code in non-annoying mode:
+Within `new-project-name` run Claude Code in non-annoying mode:
 ```
 IS_SANDBOX=1 claude --dangerously-skip-permissions
 ```
 NOTE: this is dangerious, use caution!
 
-Configure Claude Code:
+Configure Claude Code for any model preferences, etc.:
 ```/config```
+
+Have Claude Code initialize by reading `CLAUDE.md`:
+```
+/init
+```
+Answer the product design questions or create a `@PRODUCT.md` file and point it to that.
 
 Then have the sub-agents collab on `DATAFLOW.md`:
 ```
