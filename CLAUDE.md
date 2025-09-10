@@ -16,6 +16,14 @@ Only complete when: tests pass, feature works end-to-end, dependencies installed
 - **MANDATORY**: Every "done" task must work in a fresh container without mocks
 - **VERIFICATION**: Base agent must personally verify at least one working example per phase
 
+## LLM Obedience Contract
+- **Directive Hierarchy (strict)**: Product Owner > CLAUDE.md > ROADMAP.md > Module agent template > Repository code patterns > Everything else
+- **No scope drift**: Do not invent features, files, or assumptions beyond documents above
+- **UNKNOWN is allowed**: If a fact is unknown, reply "UNKNOWN" and ask for the missing input
+- **Stop when blocked**: If a dependency or prerequisite is unmet, STOP and mark blocked with exact reason
+- **No silent changes**: Ask before changing tech stack, dependencies, or architecture
+- **Evidence-first**: Never mark complete without required evidence (see Completion Evidence + Artifacts)
+
 ## Initial Information Gathering
 Check for any `PRODUCT.md` document and if none exists or any information is missing, ask the product owner for:
 1. **Product**: Name, description, user journey
@@ -106,6 +114,13 @@ At each phase completion, base agent must:
 - [ ] Verify no ImportError stubs or mock-only testing
 - [ ] Document audit results before phase promotion
 
+## Repository Hygiene & Structure Enforcement
+- Single environments for code if possible; remove module-local environments; never commit environments
+- No build artifacts or test DBs in git
+- Tests live under `tests/` only; no root-level test files
+- Keep only one canonical implementation per module; remove examples once integrated
+- Enforce structure outlined in DATAFLOW.md and product docs
+
 - Pair programming pattern defined in each agent file
 - Agents coordinate through ROADMAP.md and DATAFLOW.md
 - **API Contracts**: Each agent must define explicit contracts (request/response schemas, message formats) for integration points
@@ -129,6 +144,18 @@ Before marking ANY task complete:
 5. **Evidence Review**: Confirm all completion evidence is provided
 6. **Fresh Container Test**: Verify feature works in clean environment without mocks
 7. **Only Then**: Update ROADMAP.md status to complete
+
+### Tooling & Command Execution Policy
+- Do NOT assume a stack. Infer execution context from repository manifests, lockfiles, task runners, and container configs. If ambiguous or conflicting, STOP and ask.
+- Prefer the project's declared execution context:
+  - If container/devcontainer/compose is present, run inside that context.
+  - If a task runner exists (e.g., Makefile/Taskfile/justfile/package scripts), use provided tasks instead of ad‑hoc commands.
+- Activate the exact toolchain specified by the repo (versions/manifests/lockfiles). Never invent versions; never upgrade/downgrade implicitly.
+- Non-interactive execution only (avoid prompts).
+- No destructive commands; scope cleanups narrowly.
+- Log each command and outcome; store artifacts in `debug/[module]/[YYYYMMDD_HHMM]/`.
+- Default flow when unsure: read manifests → list available tasks → verify context with a no‑op → proceed.
+- If a required tool/context is missing, STOP and report the missing prerequisite.
 
 
 ## Version Control
@@ -158,9 +185,17 @@ Before marking ANY task complete, provide:
 - [ ] Integration test with real dependencies (not mocks)
 - [ ] Base agent verification checkoff
 
+### Evidence Artifacts (mandatory)
+- Store artifacts in `debug/[module]/[YYYYMMDD_HHMM]/`:
+  - `tests.txt` (captured test output)
+  - `coverage.txt` (coverage summary for module)
+  - `manual.md` (manual steps + screenshots/video link)
+  - `integration.md` (real service endpoints used + success proof)
+  - `notes.md` (edge cases, follow-ups, risks)
+
 ### Execution State Tracking
 **CRITICAL**: Avoid false success signals
-- Capture full stack traces, layer-by-layer state
+- Capture full stack traces, layer-by-layer statehttps://github.com/sirouk/agentic-product-dev/blob/main/CLAUDE.md
 - Track variables at checkpoints, API payloads, DB queries
 - Build custom debug tools if dependencies lack them
 - Store debug output in `debug/[module]/[timestamp].json`
