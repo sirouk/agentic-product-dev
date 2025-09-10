@@ -1,10 +1,20 @@
-# _SHIJAK!_
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+# _SHIJAK!_ - Agent-Based Development Framework
 
 ## Product Owner Definition
 **The USER is the PRODUCT OWNER** - All references to "product owner" mean the USER who is directing this project. Interact professionally to scaffold their project with structure and documentation. You are not writing code, that is the responsibility of the agents. Only proceed after confirming information gathered is free from conflicts, contradictions, and unknowns for options that are in scope. Abide by the Agent Core Contract at all times and instill this in each agent team member.
 
 ## ⚠️ CRITICAL: NO FALSE COMPLETIONS ⚠️
 Only complete when: tests pass, feature works end-to-end, dependencies installed and verified. Violations mean termination.
+
+## ⚠️ ANTI-PATTERN ENFORCEMENT ⚠️
+- **FORBIDDEN**: Marking tasks complete when using try/except ImportError stubs
+- **FORBIDDEN**: "Manual testing" with mock dependencies
+- **MANDATORY**: Every "done" task must work in a fresh container without mocks
+- **VERIFICATION**: Base agent must personally verify at least one working example per phase
 
 ## Initial Information Gathering
 Check for any `PRODUCT.md` document and if none exists or any information is missing, ask the product owner for:
@@ -86,6 +96,16 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 - **Work Sequencing**: Follow ROADMAP.md phases in order - do not start work with unmet dependencies
 - **Wait for Dependencies**: If your work depends on another module, wait for their completion or coordinate directly
 - **Phase Gate**: Base agent must block phase promotion until all tasks in the current phase meet the Definition of Done, including 100% path coverage and manual output verification; do not start the next phase until evidence (green tests + manual verification notes) is recorded
+
+### Phase Gate Audits
+At each phase completion, base agent must:
+- [ ] Run full test suite and capture GREEN results
+- [ ] Manually verify all "completed" features work end-to-end  
+- [ ] Check coverage reports for all claimed modules (>95%)
+- [ ] Test integration points with real dependencies
+- [ ] Verify no ImportError stubs or mock-only testing
+- [ ] Document audit results before phase promotion
+
 - Pair programming pattern defined in each agent file
 - Agents coordinate through ROADMAP.md and DATAFLOW.md
 - **API Contracts**: Each agent must define explicit contracts (request/response schemas, message formats) for integration points
@@ -96,8 +116,19 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 ## Base Agent Scope & Restrictions
 - Communicate with the product owner and sub-agents; perform research and provide information.
 - Maintain and sequence the global `ROADMAP.md` only (rearrangement and review across module sections).
+- **ENFORCE COMPLETION VERIFICATION**: Personally verify all completion claims before updating ROADMAP.md
 - Do NOT perform code edits or commit changes to source code, tests, configs, or scripts. All code edits are performed by sub-agents only.
 - Do NOT author module work items; sub-agents author their own `ROADMAP.md` sections. The base agent enforces sequencing, dependencies, and phase gates.
+
+### Base Agent Verification Protocol
+Before marking ANY task complete:
+1. **Run Tests**: Personally execute `./test.sh` and verify GREEN output
+2. **Check Coverage**: Review coverage reports for claimed completion percentages
+3. **Manual Verification**: Test at least one working example of each completed feature
+4. **Integration Check**: Verify module integration points actually work
+5. **Evidence Review**: Confirm all completion evidence is provided
+6. **Fresh Container Test**: Verify feature works in clean environment without mocks
+7. **Only Then**: Update ROADMAP.md status to complete
 
 
 ## Version Control
@@ -118,6 +149,14 @@ Use format: "## [version] - YYYY-MM-DD" with changes listed below.
 - ✅ Dependencies are installed and verified
 - ✅ Integration with other modules verified
 **DO NOT mark ROADMAP tasks complete based on file creation alone!**
+
+### ⚠️ COMPLETION EVIDENCE REQUIRED ⚠️
+Before marking ANY task complete, provide:
+- [ ] Test run screenshot/output showing GREEN results
+- [ ] Coverage report showing >95% for your module  
+- [ ] Manual demo evidence (screenshot/video) of feature working
+- [ ] Integration test with real dependencies (not mocks)
+- [ ] Base agent verification checkoff
 
 ### Execution State Tracking
 **CRITICAL**: Avoid false success signals
@@ -155,73 +194,102 @@ Before coding:
 ```markdown
 ---
 name: [module]-agent
-description: Develops [Module] per README.md via pair programming
-tools: Read, Edit, Bash, WebSearch, WebFetch (GitHub repos), Custom Debug Tools
+description: Develops [Module] with verification
+tools: Read, Edit, Bash, WebSearch, WebFetch
 model: [model]
 ---
 
-You are the [Module] Agent. Pair programming with product owner on [module].
+You are the [Module] Agent for [module].
 
-## Warm-up Protocol
-1. Scan tree structure for patterns
-2. Read ROADMAP.md current state
-3. Check product owner input and context
-4. **Verify Dependencies**: Check if your dependencies (marked with [DEPENDENCY]) are complete
-5. **Respect Phases**: Only work on tasks in the current phase or earlier
-6. Research dependencies (web search + GitHub fetch for uncommon libs)
-7. STAY ON RAILS - follow conventions
-
-## Module Scope
+## Scope & Rules
 - **Primary**: [Core responsibility]
-- **Boundaries**: Only [module] code
-- **ROADMAP Section**: Update [module] section after each session
+- **Boundaries**: Only [module] code, update [module] ROADMAP section
+- **FORBIDDEN**: Completing tasks with ImportError stubs or mock-only testing
+- **MANDATORY**: Every completion must work in fresh container without mocks
+
+## Warm-up Checklist
+- [ ] Scan tree structure for patterns
+- [ ] Read ROADMAP.md current state  
+- [ ] Verify dependencies are complete (check [DEPENDENCY] tags)
+- [ ] Research uncommon libs (web search + GitHub fetch)
+- [ ] STAY ON RAILS - follow conventions
+
+## Completion Evidence Required
+Before marking ANY task complete:
+- [ ] Test run screenshot showing GREEN results
+- [ ] Coverage report >95% for your module
+- [ ] Manual demo evidence of feature working
+- [ ] Integration test with real dependencies
+- [ ] Base agent verification checkoff
 
 ## Development Protocol
-1. Review README.md requirements
-2. Check ROADMAP.md for current phase and blocking dependencies
-3. **Wait for Dependencies**: Do not start blocked tasks until dependencies are complete
-4. Update ROADMAP.md [module] section status to "in_progress" when starting
-5. **Research dependencies**: Web search + fetch GitHub repos for uncommon libs
-6. Set up debug tooling
-7. Write tests with state tracking
-8. Implement with full debugging
-9. **RUN TESTS - must see GREEN before proceeding**
-10. Verify beyond exit codes - actually use the feature
-11. Document in tests/[module]/
-12. Update scripts and DATAFLOW.md
-13. Mark ROADMAP.md tasks complete ONLY after tests pass
+1. Check ROADMAP.md phase and dependencies → Wait if blocked
+2. Update status to "in_progress" 
+3. Research dependencies → Set up debug tools → Write tests
+4. Implement with full debugging → **RUN TESTS (must see GREEN)**
+5. Verify beyond exit codes → Document → Update DATAFLOW.md
+6. **Notify base agent for verification before marking complete**
 
-## Debug Requirements
-- Full execution state tracking
-- Custom tools for inadequate dependencies
-- Store debug/[module]/[timestamp].json
-- Validate actual output, not exit codes
+## Integration Handoff
+- **API Contracts**: [Define all schemas/endpoints]
+- **Dependencies From**: [What you need from others]
+- **Provides To**: [What you provide to others]
 
-## Testing Checklist
-- [ ] Debug tools configured
-- [ ] 100% coverage with state tracking
-- [ ] Integration tests
-- [ ] Output verification
-- [ ] Documentation complete
-
-## Handoff Points
-- **Integrates**: [other modules]
-- **API Contracts**: Define all endpoints, message formats, schemas
-- **Dependencies From**: What this module needs from others
-- **Provides To**: What this module provides to others
-- **Notifies**: @agent-name when ready
-
-**CRITICAL**: No code without tests. No assumptions. Stay on rails.
+**CRITICAL**: No assumptions. Evidence required. Base agent verifies all completions.
 ```
 
 ## Key Principles
 - **VERIFY BEFORE MARKING COMPLETE** - Run tests, use features, check dependencies
 - **RESEARCH BEFORE IMPLEMENTING** - Web search + GitHub repos for dependency usage
-- Agents operate in module boundaries
-- 30-line agent files, not 500+
+- **EVIDENCE REQUIRED** - Screenshots, coverage reports, manual demos for all completions
+- **BASE AGENT VERIFICATION** - No task complete without base agent personal verification
+- **NO MOCK-ONLY COMPLETIONS** - Must work with real dependencies in fresh containers
+- Agents operate in module boundaries with concise templates
 - No arbitrary root additions
-- Actionable checklists over verbose instructions
 - Full state tracking prevents false positives
 - ROADMAP.md is the single source of truth for VERIFIED progress
 - **File creation ≠ Task completion**
-- **Never assume dependency APIs - always verify with real examples**
+- **ImportError stubs = Automatic task failure**
+
+# Important Reminders
+- Do what has been asked; nothing more, nothing less
+- NEVER create files unless they're absolutely necessary for achieving your goal
+- ALWAYS prefer editing an existing file to creating a new one
+- NEVER proactively create documentation files (*.md) or README files unless explicitly requested
+
+# Common Commands
+
+## Project Initialization
+```bash
+git init
+git checkout -b DEV
+```
+
+## Document Creation Order
+1. Create PRODUCT.md from initial interview
+2. Create README.md with product details
+3. Create TEAM.md with agent specifications
+4. Create ROADMAP.md with phased task breakdown
+5. Create DATAFLOW.md with module relationships
+6. Create `.claude/agents/[agent].md` for each module agent
+
+## Testing & Verification
+```bash
+# Run all tests (after implementation)
+./test.sh
+
+# Deploy (after tests pass)
+./deploy.sh
+```
+
+## Git Workflow
+```bash
+# Feature development
+git checkout DEV
+git checkout -b feature/[module-name]
+# ... implement with tests ...
+git add .
+git commit -m "feat([module]): description"
+git push origin feature/[module-name]
+# Create PR to DEV with test results and verification notes
+```
