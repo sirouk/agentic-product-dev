@@ -69,5 +69,16 @@ Ok, let's proceed to have all agents carefully work in parallel,
   Agents should never complete work assigned to another agent.
 ```
 
+The following prompt can be repeated as necessary:
+```
+First, have the agents all run in parallel and within their scope, have them make sure their code is clean by removing any unused code, files, and artifacts that go completely unused for dev/test/prod. After having them each make a few passes over their clean up job, have them report back with their progress on the cleanup.
+
+Next, have all agents run in paralell run an audit of their codebase against the vision of the project @PRODUCT.md, the dataflow and relationships defined in @DATAFLOW.md, working in accordance with their agent template, and ultimately ultimatedly @CLAUDE.md, the seed documents of this project. The audit is not to create or edit any code, documents, nor artifacts, only to audit the entire codebase of this project agains the vision and plans of the project. Then have them each report back with their findings. 
+
+Then, you then as the base agent, along with your @testing-agent, will deploy all environments, containers, and service to allow a complete outside audit to check their claims against the codebase and documentation. You will finalize the current state of @ROADMAP.md. and report back to me about each agent and what their next steps should be.
+
+Finally, I will ask you to redeploy a clean environment, and then dispatch all agents in paralallel to continue their work according to the updated @ROADMAP.md and your report on what the next steps are for each agent.
+```
+
 Go heat up some popcorn!
 - Enjoy!
